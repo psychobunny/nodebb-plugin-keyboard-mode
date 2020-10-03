@@ -105,6 +105,27 @@ $(document).ready(function () {
 				ajaxify.go(url);
 				animate.activate();
 			}
+
+			if ((ev.keyCode === 83 || ev.keyCode === 87) && ev.type === 'keydown') {
+				if (!ajaxify.data.template.category && !ajaxify.data.template.topic) {
+					return;
+				}
+
+				require(['navigator'], function(navigator) {
+					var index = ajaxify.data.template.category ? ajaxify.data.topicIndex : ajaxify.data.postIndex;
+					var count = ajaxify.data.template.category ? ajaxify.data.topic_count : ajaxify.data.postcount;
+
+					if (index < 1 && ev.keyCode === 87 || index >= (count - 1) && ev.keyCode === 83) {
+						return;
+					}
+					index = index + (ev.keyCode === 83 ? 1 : -1);
+					ajaxify.data[ajaxify.data.template.category ? 'topicIndex' : 'topicCount'] = index;
+					navigator.scrollToIndex(index, true, 150);
+					
+					labels['key'].removeClass('hidden').toggleClass('label-success', ev.type === 'keydown').html(ev.keyCode === 83 ? 'S' : 'W');
+					labels.help.html('<i class="fa fa-list-ul ' + (ev.keyCode === 83 ? 'down' : 'up') + '"></i> [' + (index + 1) + '/' + count + ']');
+				});
+			}
 		});
 
 		container.removeClass('hidden');
