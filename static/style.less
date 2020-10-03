@@ -1,1 +1,87 @@
-/* Place any LESS in here */
+
+.kbm-container {
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	padding: 12px;
+	cursor: pointer;
+	pointer-events: none;
+	
+	.kbm-overlay {
+		background: rgba(0,0,0,0);
+		position: absolute;
+		width: 100%;
+		top: 0;
+		left: 0;
+		height: 100%;
+		.transition(background 0.15s ease-in);
+	}
+	
+	.label {
+		position: relative;
+		text-transform: uppercase;
+		font-size: 10px;
+		vertical-align: 3px;
+		display: none;
+		.transition(background 0.15s ease-in);
+		
+		.fa {
+			vertical-align: -1px;
+			font-size: 13px;
+			margin-right: 1px;
+		}
+		
+		&#kbm-shift {
+			display: inline;
+		}
+	}
+	
+	&.kbm-visible {
+		pointer-events: initial;
+		
+		.kbm-overlay {
+			background: rgba(0,0,0,0.9);
+		}
+		
+		.label {
+			display: inline;
+		}
+	}
+	
+	&.animate-activate {
+		pointer-events: initial;
+		
+		.kbm-overlay {
+			background: rgba(0,0,0,0.9);
+		}
+		
+		#kbm-help {
+			-webkit-animation: blink 0.6s both;
+			animation: blink 0.6s both;
+		}
+	}
+}
+
+@-webkit-keyframes blink {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.2;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes blink {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.2;
+	}
+	100% {
+		opacity: 1;
+	}
+}
