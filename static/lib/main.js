@@ -4,10 +4,11 @@
 
 $(document).ready(function () {
 	var container;
-	var menu;
+	var menu = {};
 	var labels = {};
 	var animating = false;
 	var activated = false;
+	var keys = { shift: false, alt: false };
 
 	var quickBookmarks = [];
 
@@ -33,28 +34,34 @@ $(document).ready(function () {
 			}
 
 			if (ev.keyCode === 16) {
-				toggleLabel('shift', ev.type === 'keydown')
-				container.toggleClass('kbm-visible', ev.type === 'keydown');
-				if (ev.type === 'keydown') {
+				keys.shift = ev.type === 'keydown';
+				
+				toggleLabel('shift', keys.shift)
+				container.toggleClass('kbm-visible', keys.shift);
+				if (keys.shift) {
 					if (!activated) {
 						labels.help.html('Activate Keyboard Mode');
-						menu.addClass('hidden');
 						labels.key.removeClass('hidden').html('K');
 					} else {
 						labels.key.addClass('hidden');
-						menu.removeClass('hidden');
 					}
-				} else {
-					//container.removeClass('animate-activate');
 				}
+
+				menu.shift.toggleClass('hidden', !activated || !keys.shift);
+				menu.alt.addClass('hidden');
 			}
 			if (ev.keyCode === 18) {
-				toggleLabel('alt', ev.type === 'keydown')
+				keys.alt = ev.type === 'keydown';
+
+				labels.alt.toggleClass('label-info', keys.alt);
+				menu.shift.toggleClass('hidden', !activated || keys.alt);
+				menu.alt.toggleClass('hidden', !activated || !keys.alt);
 			}
 
 			if (ev.keyCode === 75) {
 				labels['key'].removeClass('hidden').toggleClass('label-success', ev.type === 'keydown').html('K');
 				labels.help.html('Keyboard Mode ' + (!activated ? 'Activated' : 'Deactivated'));
+				//menu.toggleClass('hidden', activated);
 				activated = !activated;
 				animate.activate();
 			}
@@ -113,7 +120,10 @@ $(document).ready(function () {
 				$('body').append($(html));
 
 				container = $('.kbm-container');
-				menu = $('.kbm-menu');
+				menu = {
+					alt: $('.kbm-menu[data-modifier="alt"]'),
+					shift: $('.kbm-menu[data-modifier="shift"]'),
+				};
 				labels = {
 					alt:  $('#kbm-alt'),
 					shift:  $('#kbm-shift'),
@@ -133,9 +143,9 @@ $(document).ready(function () {
 		container.removeClass('animate-activate').addClass('animate-activate');
 		animating = setTimeout(function() {
 			container.removeClass('animate-activate kbm-visible');
-			container.find('.label').removeClass('label-primary label-success')
+			container.find('#kbm-shift, #kbm-alt, #kbm-key').removeClass('label-primary label-success label-info')
 			animating = false;
 			labels.help.html('');
-		}, 1500);
+		}, 1200);
 	}
 });

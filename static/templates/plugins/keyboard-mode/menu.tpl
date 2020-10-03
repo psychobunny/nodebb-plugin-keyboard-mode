@@ -6,14 +6,26 @@
 	<span id="kbm-help" class="label label"></span>
 	
 
-	<div class="pull-right kbm-menu hidden">
-		<span id="" class="label label-default">R</span>
+	<div class="pull-right kbm-menu hidden" data-modifier="shift">
+		<span id="" class="label label-primary">W</span>
+		<span id="" class="label label">Up</span>
+		<span id="" class="label label-primary">S</span>
+		<span id="" class="label label">Down</span>
+		<span id="" class="label label-primary">A</span>
+		<span id="" class="label label">Backwards</span>
+		<span id="" class="label label-primary">D</span>
+		<span id="" class="label label">Forwards</span>
+		<!--<span id="kbm-esc" class="label label-default">ESC</span>-->
+	</div>
+
+	<div class="pull-right kbm-menu hidden" data-modifier="alt">
+		<span id="" class="label label-info">R</span>
 		<span id="" class="label label">Quick Reply</span>
-		<span id="" class="label label-default">B</span>
+		<span id="" class="label label-info">B</span>
 		<span id="" class="label label">Quick Bookmark</span>
-		<span id="" class="label label-default">A</span>
+		<span id="" class="label label-info">A</span>
 		<span id="" class="label label">Previous Bookmark</span>
-		<span id="" class="label label-default">D</span>
+		<span id="" class="label label-info">D</span>
 		<span id="" class="label label">Next Bookmark</span>
 		<!--<span id="kbm-esc" class="label label-default">ESC</span>-->
 	</div>
