@@ -5,6 +5,11 @@
 	<span id="kbm-key" class="label label-default">K</span>
 	<span id="kbm-help" class="label label"></span>
 	
+	<div class="pull-right kbm-menu hidden" data-modifier="options">
+		<span id="" class="label label-primary">W</span>
+		<span id="" class="label label-primary">S</span>
+		<span id="kbm-enter" class="label label-default">Enter</span>
+	</div>
 
 	<div class="pull-right kbm-menu hidden" data-modifier="shift">
 		<span id="" class="label label-primary">W</span>

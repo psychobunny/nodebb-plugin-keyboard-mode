@@ -33,6 +33,14 @@ $(document).ready(function () {
 				return;
 			}
 
+			if (ev.keyCode === 13 && ev.type === 'keydown' && ajaxify.data.template.category) {
+				labels.key.removeClass('hidden').html('Enter');
+				labels.help.addClass('hidden');
+				$('[component="category/topic"].highlight').find('[component="topic/header"] a')[0].click();
+				animate.activate();
+				return;
+			}
+
 			if (ev.keyCode === 16) {
 				keys.shift = ev.type === 'keydown';
 				
@@ -49,6 +57,7 @@ $(document).ready(function () {
 
 				menu.shift.toggleClass('hidden', !activated || !keys.shift);
 				menu.alt.addClass('hidden');
+				menu.options.addClass('hidden');
 			}
 			if (ev.keyCode === 18) {
 				keys.alt = ev.type === 'keydown';
@@ -115,15 +124,27 @@ $(document).ready(function () {
 					var index = ajaxify.data.template.category ? ajaxify.data.topicIndex : ajaxify.data.postIndex;
 					var count = ajaxify.data.template.category ? ajaxify.data.topic_count : ajaxify.data.postcount;
 
-					if (index < 1 && ev.keyCode === 87 || index >= (count - 1) && ev.keyCode === 83) {
-						return;
+					if (ajaxify.data.template.category && $('[component="category/topic"].highlight').length) {
+						index = parseInt($('[component="category/topic"].highlight').attr('data-index'), 10);
 					}
-					index = index + (ev.keyCode === 83 ? 1 : -1);
-					ajaxify.data[ajaxify.data.template.category ? 'topicIndex' : 'topicCount'] = index;
-					navigator.scrollToIndex(index, true, 150);
+
+					if (!(index < 1 && ev.keyCode === 87) && !(index >= (count - 1) && ev.keyCode === 83)) {	
+						index = index + (ev.keyCode === 83 ? 1 : -1);
+						ajaxify.data[ajaxify.data.template.category ? 'topicIndex' : 'postIndex'] = index;
+						navigator.scrollToIndex(index, true, 150);
+					}
+
+
+
 					
 					labels['key'].removeClass('hidden').toggleClass('label-success', ev.type === 'keydown').html(ev.keyCode === 83 ? 'S' : 'W');
-					labels.help.html('<i class="fa fa-list-ul ' + (ev.keyCode === 83 ? 'down' : 'up') + '"></i> [' + (index + 1) + '/' + count + ']');
+					labels.help.removeClass('hidden').html('<i class="fa fa-list-ul ' + (ev.keyCode === 83 ? 'down' : 'up') + '"></i> [' + (index + 1) + '/' + count + ']');
+					if (ajaxify.data.template.category) {
+						menu.options.removeClass('hidden');
+						menu.alt.addClass('hidden');
+						menu.shift.addClass('hidden');
+					}
+					animate.activate();
 				});
 			}
 		});
@@ -144,6 +165,7 @@ $(document).ready(function () {
 				menu = {
 					alt: $('.kbm-menu[data-modifier="alt"]'),
 					shift: $('.kbm-menu[data-modifier="shift"]'),
+					options: $('.kbm-menu[data-modifier="options"]'),
 				};
 				labels = {
 					alt:  $('#kbm-alt'),
