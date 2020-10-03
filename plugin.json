@@ -1,6 +1,6 @@
 {
-	"id": "nodebb-plugin-quickstart",
-	"url": "https://github.com/NodeBB/nodebb-plugin-quickstart",
+	"id": "nodebb-plugin-keyboard-mode",
+	"url": "https://github.com/NodeBB/nodebb-plugin-keyboard-mode",
 	"library": "./library.js",
 	"hooks": [
 		{
