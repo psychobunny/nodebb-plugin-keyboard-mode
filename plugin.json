@@ -17,6 +17,9 @@
 		"static/style.less"
 	],
 	"scripts": [
+		"static/lib/modules/bookmarks.js",
+		"static/lib/modules/navigate.js",
+		"static/lib/modules/animate.js",
 		"static/lib/main.js"
 	],
 	"acpScripts": [
