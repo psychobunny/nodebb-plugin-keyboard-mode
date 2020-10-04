@@ -44,6 +44,8 @@ require([
 			return;
 		}
 
+		kbm.labels.help.removeClass('hidden');
+
 		if (ev.keyCode === 13 && keyDown && ajaxify.data.template.category) {
 			kbm.labels.key.removeClass('hidden').html('Enter');
 			kbm.labels.help.addClass('hidden');
