@@ -151,6 +151,20 @@ require([
 				navigate.scroll(ev);
 			}
 		}
+
+		if (ev.keyCode === 82 && keyDown) {
+			if (ajaxify.data.template.topic) {
+				kbm.labels.key.removeClass('hidden').toggleClass('label-success', keyDown).html('R');
+				setTimeout(function() {
+					$(window).trigger('action:composer.post.new', {
+						tid: ajaxify.datatid,
+						//pid: toPid,
+						topicName: ajaxify.data.titleRaw,
+						//text: username ? username + ' ' : ($('[component="topic/quickreply/text"]').val() || ''),
+					});
+				}, 150);
+			}
+		}
 	}
 	
 	var substringMatcher = function(strs) {
