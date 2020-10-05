@@ -10,17 +10,21 @@ define('kbm/modules/animate', [], function () {
 		kbm = _kbm;
 	};
 
-	animate.activate = function() {
+	animate.activate = function(stayOpen) {
 		clearTimeout(kbm.animating);
 
 		kbm.container.removeClass('animate-activate').addClass('animate-activate');
-		kbm.animating = setTimeout(function() {
-			kbm.container.removeClass('animate-activate kbm-visible');
-			kbm.container.find('#kbm-shift, #kbm-alt, #kbm-key').removeClass('label-primary label-success label-info')
-			kbm.animating = false;
-			kbm.labels.help.html('');
-		}, 1200);
-	}
+		if (!stayOpen) {
+			kbm.animating = setTimeout(animate.end, 1200);
+		}
+	};
+
+	animate.end = function() {
+		kbm.container.removeClass('animate-activate kbm-visible');
+		kbm.container.find('#kbm-shift, #kbm-alt, #kbm-key').removeClass('label-primary label-success label-info')
+		kbm.animating = false;
+		kbm.labels.help.html('');
+	};
 
 	return animate;
 });
