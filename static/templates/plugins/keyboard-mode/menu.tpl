@@ -4,7 +4,7 @@
 	<span id="kbm-alt" class="label label-default">ALT</span>
 	<span id="kbm-key" class="label label-default">K</span>
 	<span id="kbm-help" class="label label"></span>
-	<input id="kbm-console" type="text hidden" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="START TYPING OR ENTER ? FOR ALL COMMANDS" />
+	<input id="kbm-console" type="text" class="hidden" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="START TYPING OR ENTER ? FOR ALL COMMANDS" />
 	
 	<div class="pull-right kbm-menu hidden" data-modifier="options">
 		<span id="kbm-enter" class="label label-default">Enter</span>

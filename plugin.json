@@ -17,13 +17,12 @@
 		"static/style.less"
 	],
 	"scripts": [
+		"static/lib/dist/bloodhound.min.js",
+		"static/lib/dist/typeahead.min.js",
 		"static/lib/modules/bookmarks.js",
 		"static/lib/modules/navigate.js",
 		"static/lib/modules/animate.js",
 		"static/lib/main.js"
-	],
-	"acpScripts": [
-		"static/lib/admin.js"
 	],
 	"templates": "static/templates"
 }
